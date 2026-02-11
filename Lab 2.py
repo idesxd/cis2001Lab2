@@ -70,10 +70,16 @@ else:
 #Extra
 #CITATION, UMGPT PROMPT: How do i check if the tour is closed, what can i add after the completion?
 def is_closed_tour(board, start_x, start_y):
+    end_x = end_y = None
+
     for i in range(N):
         for j in range(N):
             if board[i][j] == N * N - 1:
                 end_x, end_y = i, j
+                break
+
+    if end_x is None:
+        return False
 
     for dx, dy in MOVES:
         if end_x + dx == start_x and end_y + dy == start_y:
